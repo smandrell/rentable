@@ -1,0 +1,9 @@
+one:
+  address: "123 Maple St"
+  city: "Sample City"
+  state: "Sample State"
+
+two:
+  address: "456 Oak Ave"
+  city: "Another City"
+  state: "Another State"

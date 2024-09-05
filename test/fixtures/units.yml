@@ -1,0 +1,20 @@
+one:
+  property: one
+  bedroom_count: 2
+  bathroom_count: 1
+  square_footage: 500
+  rent_price: 1200
+
+two:
+  property: one
+  bedroom_count: 3
+  bathroom_count: 2
+  square_footage: 750
+  rent_price: 1500
+
+three:
+  property: two
+  bedroom_count: 1
+  bathroom_count: 1
+  square_footage: 400
+  rent_price: 900

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= content_for?(:title) ? yield(:title) : "PropertyPad" %></title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans">
+  <header class="bg-white shadow-md py-4">
+    <div class="container mx-auto px-5 flex justify-between items-center">
+      <%= link_to "PropertyPad", root_path, class: "text-2xl font-bold text-blue-600" %>
+      <nav class="space-x-4">
+        <%= link_to "Properties", properties_path, class: "text-gray-700 hover:text-blue-500" %>
+      </nav>
+    </div>
+  </header>
+  
+  <main class="container mx-auto mt-8 px-5">
+    <% flash.each do |key, message| %>
+      <div class="mb-4 p-3 rounded-lg text-white
+        <% case key %>
+        <% when "notice" %>
+          bg-blue-400
+        <% when "alert" %>
+          bg-red-400
+        <% when "success" %>
+          bg-green-400
+        <% end %>
+      ">
+        <%= message %>
+      </div>
+    <% end %>
+
+    <%= yield %>
+  </main>
+  
+  <footer class="bg-white shadow-md py-4 mt-8">
+    <div class="container mx-auto px-5 text-center text-gray-600">
+      <p>&copy; <%= Time.now.year %> PropertyPad. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

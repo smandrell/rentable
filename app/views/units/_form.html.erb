@@ -1,0 +1,37 @@
+<%= form_with(model: [@property, unit], local: true) do |form| %>
+  <% if unit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(unit.errors.count, "error") %> prohibited this unit from being saved:</h2>
+
+      <ul>
+        <% unit.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :bedroom_count, "Number of Bedrooms" %>
+    <%= form.number_field :bedroom_count %>
+  </div>
+
+  <div>
+    <%= form.label :bathroom_count, "Number of Bathrooms" %>
+    <%= form.number_field :bathroom_count %>
+  </div>
+
+  <div>
+    <%= form.label :square_footage, "Square Footage" %>
+    <%= form.number_field :square_footage %>
+  </div>
+
+  <div>
+    <%= form.label :rent_price, "Rent Price" %>
+    <%= form.number_field :rent_price, step: 0.01 %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

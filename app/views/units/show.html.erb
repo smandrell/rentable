@@ -1,0 +1,31 @@
+<!-- Display unit details -->
+<div class="container mx-auto p-6 max-w-lg">
+  <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-600 via-blue-400 to-blue-300 bg-clip-text text-transparent mb-4">
+    Unit #<%= @unit.id %> <%= @property.address %>
+  </h1>
+
+  <div class="bg-white p-6 border border-gray-200 rounded-lg shadow-sm">
+    <p class="text-lg mb-2">
+      <strong class="text-gray-700">Bedrooms:</strong>
+      <span class="text-gray-900"><%= @unit.bedroom_count %></span>
+    </p>
+    <p class="text-lg mb-2">
+      <strong class="text-gray-700">Bathrooms:</strong>
+      <span class="text-gray-900"><%= @unit.bathroom_count %></span>
+    </p>
+    <p class="text-lg mb-2">
+      <strong class="text-gray-700">Square Footage:</strong>
+      <span class="text-gray-900"><%= @unit.square_footage %></span>
+    </p>
+    <p class="text-lg mb-2">
+      <strong class="text-gray-700">Rent Price:</strong>
+      <span class="text-gray-900"><%= number_to_currency(@unit.rent_price) %></span>
+    </p>
+  </div>
+</div>
+
+<!-- Action buttons -->
+<div class="mt-6 flex gap-2 justify-center">
+  <%= link_to 'Edit', edit_property_unit_path(@property, @unit), class: 'bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600' %>
+  <%= link_to 'Back to Property', property_path(@property), class: 'bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600' %>
+</div>

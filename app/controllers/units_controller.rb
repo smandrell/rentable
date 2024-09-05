@@ -1,0 +1,70 @@
+class UnitsController < ApplicationController
+  before_action :set_property
+  before_action :set_unit, only: [:show, :edit, :update, :destroy]
+
+  # GET /properties/:property_id/units
+  def index
+    @units = Unit.all
+  end
+
+  # GET /properties/:property_id/units/1
+  def show
+    @unit = Unit.find(params[:id])
+  end
+
+  # GET /properties/:property_id/units/new
+  def new
+    @property = Property.find(params[:property_id])
+    @unit = @property.units.build
+  end
+
+  # GET /properties/:property_id/units/1/edit
+  def edit
+    @property = Property.find(params[:property_id])
+    @unit = @property.units.find(params[:id])
+  end
+  
+
+  # POST /properties/:property_id/units
+  def create
+    @unit = @property.units.build(unit_params)
+    if @unit.save
+      redirect_to [@property, @unit], notice: 'Unit was successfully created'
+    else
+      render :new
+    end
+  end
+
+  # PATCH/PUT /properties/:property_id/units/1
+  def update
+    if @unit.update(unit_params)
+      redirect_to [@property, @unit], notice: 'Unit was successfully updated'
+    else
+      render :edit
+    end
+  end
+
+  # DELETE /properties/:property_id/units/1
+  def destroy
+    @unit.destroy
+    redirect_to property_path(@unit.property), notice: 'Unit was successfully removed'
+  end
+  
+
+  private
+
+    # Set the property for which the unit belongs
+    def set_property
+      @property = Property.find(params[:property_id])
+    end
+
+    # Set the specific unit for actions like show, edit, update, and destroy
+    def set_unit
+      @unit = @property.units.find(params[:id])
+    end
+
+    # Strong parameters to allow only trusted parameters through
+    def unit_params
+      params.require(:unit).permit(:bedroom_count, :bathroom_count, :square_footage, :rent_price)
+    end
+end

@@ -1,0 +1,57 @@
+<!-- Display property details -->
+<div class="container mx-auto p-6 max-w-lg">
+  <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-4">
+    <%= @property.address %>, <%= @property.city %>, <%= @property.state %>
+  </h1>
+
+  <div class="bg-white p-4 border border-gray-200 rounded-lg shadow-sm">
+    <p class="text-lg mb-2">
+      <strong class="text-gray-700">Address:</strong>
+      <span class="text-gray-900"><%= @property.address %></span>
+    </p>
+    <p class="text-lg mb-2">
+      <strong class="text-gray-700">City:</strong>
+      <span class="text-gray-900"><%= @property.city %></span>
+    </p>
+    <p class="text-lg mb-2">
+      <strong class="text-gray-700">State:</strong>
+      <span class="text-gray-900"><%= @property.state %></span>
+    </p>
+  </div>
+</div>
+
+<!-- List of units for this property -->
+<div class="mt-8">
+  <h2 class="text-2xl font-semibold mb-4">Units:</h2>
+  <table class="min-w-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md">
+    <thead>
+      <tr class="bg-gray-100">
+        <th class="py-2 px-4 border-b text-center">Bedroom Count</th>
+        <th class="py-2 px-4 border-b text-center">Bathroom Count</th>
+        <th class="py-2 px-4 border-b text-center">Square Footage</th>
+        <th class="py-2 px-4 border-b text-center">Rent Price</th>
+        <th class="py-2 px-4 border-b text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @property.units.each do |unit| %>
+        <tr class="hover:bg-gray-50">
+          <td class="py-2 px-4 border-b text-center"><%= unit.bedroom_count %></td>
+          <td class="py-2 px-4 border-b text-center"><%= unit.bathroom_count %></td>
+          <td class="py-2 px-4 border-b text-center"><%= unit.square_footage %></td>
+          <td class="py-2 px-4 border-b text-center"><%= number_to_currency(unit.rent_price) %></td>
+          <td class="py-2 px-4 border-b text-center">
+            <%= link_to 'Show', property_unit_path(@property, unit), class: 'bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 text-xs' %>
+            <%= link_to 'Edit', edit_property_unit_path(@property, unit), class: 'bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 text-xs' %>
+            <%= link_to 'Remove', property_unit_path(@property, unit), method: :delete, data: { confirm: 'Are you sure?' }, class: 'bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-xs' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="mt-6 flex gap-2 justify-center">
+    <%= link_to 'New Unit', new_property_unit_path(@property), class: 'bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600' %>
+    <%= link_to 'Back to Properties', properties_path, class: 'bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600' %>
+  </div>
+</div>

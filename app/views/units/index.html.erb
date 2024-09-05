@@ -1,0 +1,31 @@
+<!-- List of all units -->
+<h1>All Units</h1>
+<%= link_to 'New Unit', new_property_unit_path(@property), class: 'btn btn-primary' %>
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Bedroom Count</th>
+      <th>Bathroom Count</th>
+      <th>Square Footage</th>
+      <th>Rent Price</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @units.each do |unit| %>
+      <tr>
+        <td><%= unit.property.address %>, <%= unit.property.city %>, <%= unit.property.state %></td>
+        <td><%= unit.bedroom_count %></td>
+        <td><%= unit.bathroom_count %></td>
+        <td><%= unit.square_footage %></td>
+        <td><%= number_to_currency(unit.rent_price) %></td>
+        <td>
+          <%= link_to 'Show', property_unit_path(@property, unit), class: 'btn btn-info' %>
+          <%= link_to 'Edit', edit_property_unit_path(@property, unit), class: 'btn btn-warning' %>
+          <%= link_to 'Remove', property_unit_path(@property, unit), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
