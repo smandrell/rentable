@@ -31,7 +31,6 @@ class UnitsTest < ApplicationSystemTestCase
     click_on "Update Unit"
 
     assert_text "Unit was successfully updated"
-    click_on "Back"
   end
 
   test "removing a Unit" do

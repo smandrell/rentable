@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   resources :properties do
     resources :units
   end
+  resources :units, only: [:index]
 end

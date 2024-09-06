@@ -41,7 +41,6 @@
           <td class="py-2 px-4 border-b text-center"><%= unit.square_footage %></td>
           <td class="py-2 px-4 border-b text-center"><%= number_to_currency(unit.rent_price) %></td>
           <td class="py-2 px-4 border-b text-center">
-            <%= link_to 'Show', property_unit_path(@property, unit), class: 'bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 text-xs' %>
             <%= link_to 'Edit', edit_property_unit_path(@property, unit), class: 'bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 text-xs' %>
             <%= link_to 'Remove', property_unit_path(@property, unit), method: :delete, data: { confirm: 'Are you sure?' }, class: 'bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-xs' %>
           </td>

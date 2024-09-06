@@ -1,16 +1,4 @@
 <%= form_with(model: [@property, unit], local: true) do |form| %>
-  <% if unit.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(unit.errors.count, "error") %> prohibited this unit from being saved:</h2>
-
-      <ul>
-        <% unit.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <div>
     <%= form.label :bedroom_count, "Number of Bedrooms" %>
     <%= form.number_field :bedroom_count %>

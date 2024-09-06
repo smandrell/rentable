@@ -5,6 +5,7 @@
   </h1>
 
   <%= form_with(model: [@property, @unit], local: true, class: 'space-y-4') do |form| %>
+    <%= hidden_field_tag :redirect_to, request.referer %>
     <div class="bg-white p-6 border border-gray-200 rounded-lg shadow-sm">
       <div class="mb-4">
         <%= form.label :bedroom_count, class: 'block text-gray-700 mb-2' %>

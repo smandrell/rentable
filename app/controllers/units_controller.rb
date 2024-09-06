@@ -1,5 +1,5 @@
 class UnitsController < ApplicationController
-  before_action :set_property
+  before_action :set_property, only: [:show, :create]
   before_action :set_unit, only: [:show, :edit, :update, :destroy]
 
   # GET /properties/:property_id/units
@@ -37,8 +37,10 @@ class UnitsController < ApplicationController
 
   # PATCH/PUT /properties/:property_id/units/1
   def update
+    redirect_path = params[:redirect_to] || [@property, @unit]
+
     if @unit.update(unit_params)
-      redirect_to [@property, @unit], notice: 'Unit was successfully updated'
+      redirect_to redirect_path, notice: 'Unit was successfully updated'
     else
       render :edit
     end
@@ -46,8 +48,9 @@ class UnitsController < ApplicationController
 
   # DELETE /properties/:property_id/units/1
   def destroy
+    redirect_path = params[:redirect_to] || [@property, @unit]
     @unit.destroy
-    redirect_to property_path(@unit.property), notice: 'Unit was successfully removed'
+    redirect_to redirect_path, notice: 'Unit was successfully removed'
   end
   
 
@@ -55,12 +58,17 @@ class UnitsController < ApplicationController
 
     # Set the property for which the unit belongs
     def set_property
-      @property = Property.find(params[:property_id])
+      if params[:property_id]
+        @property = Property.find(params[:property_id])
+      else
+        @unit.property
+      end
     end
 
     # Set the specific unit for actions like show, edit, update, and destroy
     def set_unit
-      @unit = @property.units.find(params[:id])
+      @unit = Unit.find(params[:id])
+      @property = @unit.property # This ensures @property is set from @unit
     end
 
     # Strong parameters to allow only trusted parameters through

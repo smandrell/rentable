@@ -1,31 +1,34 @@
-<!-- List of all units -->
-<h1>All Units</h1>
-<%= link_to 'New Unit', new_property_unit_path(@property), class: 'btn btn-primary' %>
-<table>
+<!-- app/views/units/index.html.erb -->
+<h1 class="text-3xl font-bold mb-4">All Units</h1>
+
+<table class="min-w-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md">
   <thead>
-    <tr>
-      <th>Property</th>
-      <th>Bedroom Count</th>
-      <th>Bathroom Count</th>
-      <th>Square Footage</th>
-      <th>Rent Price</th>
-      <th>Actions</th>
+    <tr class="bg-gray-100">
+      <th class="py-2 px-4 border-b text-center">Property</th>
+      <th class="py-2 px-4 border-b text-center">Bedroom Count</th>
+      <th class="py-2 px-4 border-b text-center">Bathroom Count</th>
+      <th class="py-2 px-4 border-b text-center">Square Footage</th>
+      <th class="py-2 px-4 border-b text-center">Rent Price</th>
+      <th class="py-2 px-4 border-b text-center">Actions</th>
     </tr>
   </thead>
   <tbody>
     <% @units.each do |unit| %>
-      <tr>
-        <td><%= unit.property.address %>, <%= unit.property.city %>, <%= unit.property.state %></td>
-        <td><%= unit.bedroom_count %></td>
-        <td><%= unit.bathroom_count %></td>
-        <td><%= unit.square_footage %></td>
-        <td><%= number_to_currency(unit.rent_price) %></td>
-        <td>
-          <%= link_to 'Show', property_unit_path(@property, unit), class: 'btn btn-info' %>
-          <%= link_to 'Edit', edit_property_unit_path(@property, unit), class: 'btn btn-warning' %>
-          <%= link_to 'Remove', property_unit_path(@property, unit), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+      <tr class="hover:bg-gray-50">
+        <td class="py-2 px-4 border-b text-center"><%= unit.property.address %></td>
+        <td class="py-2 px-4 border-b text-center"><%= unit.bedroom_count %></td>
+        <td class="py-2 px-4 border-b text-center"><%= unit.bathroom_count %></td>
+        <td class="py-2 px-4 border-b text-center"><%= unit.square_footage %></td>
+        <td class="py-2 px-4 border-b text-center"><%= number_to_currency(unit.rent_price) %></td>
+        <td class="py-2 px-4 border-b text-center">
+          <%= link_to 'Edit', edit_property_unit_path(unit.property, unit), class: 'bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 text-xs' %>
+          <%= link_to 'Remove', property_unit_path(unit.property, unit), method: :delete, data: { confirm: 'Are you sure?' }, class: 'bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-xs' %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<div class="mt-6 flex gap-2 justify-center">
+  <%= link_to 'Back to Properties', properties_path, class: 'bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600' %>
+</div>
