@@ -2,12 +2,18 @@ class UnitsController < ApplicationController
   before_action :set_property, only: [:show, :create]
   before_action :set_unit, only: [:show, :edit, :update, :destroy]
 
-  # GET /properties/:property_id/units
+  # GET /units -- gets all units for all properties
+  # GET /properties/:property_id/units -- gets units for specific property
   def index
-    @units = Unit.all
+    if params[:property_id]
+      @property = Property.find(params[:property_id])
+      @units = @property.units
+    else
+      @units = Unit.all
+    end
   end
 
-  # GET /properties/:property_id/units/1
+  # GET /properties/:property_id/units/:id
   def show
     @unit = Unit.find(params[:id])
   end
@@ -18,7 +24,7 @@ class UnitsController < ApplicationController
     @unit = @property.units.build
   end
 
-  # GET /properties/:property_id/units/1/edit
+  # GET /properties/:property_id/units/:id/edit
   def edit
     @property = Property.find(params[:property_id])
     @unit = @property.units.find(params[:id])

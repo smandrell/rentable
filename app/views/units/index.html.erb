@@ -1,34 +1,36 @@
-<!-- app/views/units/index.html.erb -->
-<h1 class="text-3xl font-bold mb-4">All Units</h1>
+<div class="container mx-auto p-6">
+  <h1 class="text-3xl font-bold mb-6">Units</h1>
 
-<table class="min-w-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md">
-  <thead>
-    <tr class="bg-gray-100">
-      <th class="py-2 px-4 border-b text-center">Property</th>
-      <th class="py-2 px-4 border-b text-center">Bedroom Count</th>
-      <th class="py-2 px-4 border-b text-center">Bathroom Count</th>
-      <th class="py-2 px-4 border-b text-center">Square Footage</th>
-      <th class="py-2 px-4 border-b text-center">Rent Price</th>
-      <th class="py-2 px-4 border-b text-center">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @units.each do |unit| %>
-      <tr class="hover:bg-gray-50">
-        <td class="py-2 px-4 border-b text-center"><%= unit.property.address %></td>
-        <td class="py-2 px-4 border-b text-center"><%= unit.bedroom_count %></td>
-        <td class="py-2 px-4 border-b text-center"><%= unit.bathroom_count %></td>
-        <td class="py-2 px-4 border-b text-center"><%= unit.square_footage %></td>
-        <td class="py-2 px-4 border-b text-center"><%= number_to_currency(unit.rent_price) %></td>
-        <td class="py-2 px-4 border-b text-center">
-          <%= link_to 'Edit', edit_property_unit_path(unit.property, unit), class: 'bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 text-xs' %>
-          <%= link_to 'Remove', property_unit_path(unit.property, unit), method: :delete, data: { confirm: 'Are you sure?' }, class: 'bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-xs' %>
-        </td>
+  <table class="min-w-full bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+    <thead>
+      <tr class="bg-gray-100">
+        <th class="py-3 px-4 border-b text-center">Property</th>
+        <th class="py-3 px-4 border-b text-center">Bedroom Count</th>
+        <th class="py-3 px-4 border-b text-center">Bathroom Count</th>
+        <th class="py-3 px-4 border-b text-center">Square Footage</th>
+        <th class="py-3 px-4 border-b text-center">Rent Price</th>
+        <th class="py-3 px-4 border-b text-center">Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<div class="mt-6 flex gap-2 justify-center">
-  <%= link_to 'Back to Properties', properties_path, class: 'bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600' %>
+    <tbody>
+      <% @units.each do |unit| %>
+        <tr class="hover:bg-gray-50">
+          <td class="py-3 px-4 border-b text-center"><%= unit.property.address %></td>
+          <td class="py-3 px-4 border-b text-center"><%= unit.bedroom_count %></td>
+          <td class="py-3 px-4 border-b text-center"><%= unit.bathroom_count %></td>
+          <td class="py-3 px-4 border-b text-center"><%= unit.square_footage %></td>
+          <td class="py-3 px-4 border-b text-center"><%= number_to_currency(unit.rent_price) %></td>
+          <td class="py-3 px-4 border-b text-center">
+            <%= link_to 'Edit', edit_property_unit_path(unit.property, unit), class: 'bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 text-xs' %>
+            <%= link_to 'Remove', property_unit_path(unit.property, unit), method: :delete, data: { confirm: 'Are you sure?' }, class: 'bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-xs' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="mt-6">
+    <%= link_to 'Back to Properties', properties_path, class: "bg-gray-500 text-white px-4 py-2 rounded-lg shadow-sm hover:bg-gray-600 transition duration-300" %>
+  </div>
 </div>
