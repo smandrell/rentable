@@ -8,7 +8,6 @@ This application is a property management tool that allows users to create, sear
 ### Prerequisites
 - Ruby 3.3.4
 - Rails 7.2.1
-- Node.js and Yarn
 - SQLite3
 - Bundler (`gem install bundler`)
 
